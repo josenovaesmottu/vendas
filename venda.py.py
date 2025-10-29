@@ -9,7 +9,7 @@ import time
 # ==============================
 # CONFIGURAÇÕES
 # ==============================
-st.set_page_config(page_title="Dashboard de Retiradas", page_icon="🟢🏍️ ", layout="wide")
+st.set_page_config(page_title="Dashboard de Retiradas", page_icon="🟢 ", layout="wide")
 st.title("🟢🏍️  Acompanhamento de Vendas — Mottu")
 
 filiais = {
@@ -198,7 +198,7 @@ st.subheader(f"📍 Regional {regional_sel} — Atualizado às {hora_brasil}")
 
 col1, col2 = st.columns(2)
 col1.metric("Total de Vendas (hoje)", int(df["vendasHoje"].sum()))
-col2.metric("Filiais com Vendas", int((df["vendasHoje"] > 0).sum()))
+
 
 st.dataframe(
     df[["lugarNome", "vendasHoje"]]
@@ -209,5 +209,6 @@ st.dataframe(
     use_container_width=True,
     height=500,
 )
+
 
 st.caption("Para atualizar automaticamente, recarregue a página após o intervalo definido.")
