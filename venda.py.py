@@ -57,7 +57,7 @@ filiais = {
     "Mottu Cachoeiro de Itapemirim": 505, "Mottu Cariacica": 489, "Mottu Nossa Senhora do Socorro": 507,
     "Mottu Anápolis": 58,"Mottu MX Edomex Coacalco": 499,
     "Mottu México CDMX Iztapalapa": 87, "Mottu Campo Grande - RJ": 497,
-    "Mottu São José do Ribamar": 513, "Mottu São Mateus": 514,
+    "Mottu São José do Ribamar": 513, "Mottu São Mateus": 514, "Mottu Ourinhos": 475, "Mottu Nova Iguaçu": 478, "Mottu Madureira": 476
     "Mottu Poços de Caldas": 515, "Mottu Americana": 533,
     "Mottu Marília": 536 , "Mottu Botucatu": 523, "Mottu Votuporanga": 542, "Mottu Varginha": 546, "Mottu Chapecó": 544,"Mottu Itumbiara": 537,"Mottu Ipojuca": 267,"Mottu Caxias": 366,
     "Mottu Barreiras": 259,"Mottu Ji Paraná": 416,"Mottu Americana": 533,"Mottu Marília": 536,"Mottu Itapetininga": 449,"Mottu São Mateus": 514,"Mottu Poços de Caldas": 515,"Mottu Sete Lagoas": 372,
@@ -213,6 +213,7 @@ st.dataframe(
 )
 
 st.caption("Para atualizar automaticamente, recarregue a página após o intervalo definido.")
+
 
 
 
