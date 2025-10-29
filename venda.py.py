@@ -76,6 +76,7 @@ regionais = {
     "Lucas": [42, 48, 107, 249, 113, 47, 43, 106, 71, 499, 459, 87, 413, 85, 11],
     "Rogério": [69, 70, 73, 74, 76, 110, 115, 271, 274, 258, 329, 51, 95, 284, 252, 238, 80, 109, 49, 50, 310, 295, 405, 384, 225, 248, 266, 283, 402, 250, 365, 404, 282, 64, 175, 311]
 }
+regionais["Lucaiano"] = sum(regionais.values(), [])
 id_para_nome = {v: k for k, v in filiais.items()}
 
 # ==============================
@@ -199,12 +200,17 @@ st.subheader(f"📍 Regional {regional_sel} — Atualizado às {hora_brasil}")
 col1, col2 = st.columns(2)
 col1.metric("Total de Vendas (hoje)", int(df["vendasHoje"].sum()))
 
-st.dataframe(
+def destacar_zeros(val):
+    color = 'red' if val == 0 else 'white'
+    return f'color: {color};'
+
+df_estilizado = (
     df[["lugarNome", "vendasHoje"]]
-      .rename(columns={"lugarNome": "Filial", "vendasHoje": "Vendas (Hoje)"}),
-    use_container_width=True,
-    height=500,
+    .rename(columns={"lugarNome": "Filial", "vendasHoje": "Vendas (Hoje)"})
+    .style.applymap(destacar_zeros, subset=["Vendas (Hoje)"])
 )
+
+st.dataframe(df_estilizado, use_container_width=True, height=500)
 
 st.caption("Para atualizar automaticamente, recarregue a página após o intervalo definido.")
 
