@@ -59,7 +59,10 @@ filiais = {
     "Mottu México CDMX Iztapalapa": 87, "Mottu Campo Grande - RJ": 497,
     "Mottu São José do Ribamar": 513, "Mottu São Mateus": 514,
     "Mottu Poços de Caldas": 515, "Mottu Americana": 533,
-    "Mottu Marília": 536
+    "Mottu Marília": 536 , "Mottu Botucatu": 523, "Mottu Votuporanga": 542, "Mottu Varginha": 546, "Mottu Chapecó": 544, "Mottu Dourados": 77,"Mottu Itumbiara": 537,"Mottu Ipojuca": 267,"Mottu Caxias": 366,
+    "Mottu Barreiras": 259,"Mottu Ji Paraná": 416,"Mottu Americana": 533,"Mottu Marília": 536,"Mottu Itapetininga": 449,"Mottu São Mateus": 514,"Mottu Poços de Caldas": 515,"Mottu Sete Lagoas": 372,
+    "Mottu Volta Redonda": 396,"Mottu Campos dos Goytacazes": 285,"Mottu Ponta Grossa": 319,"Mottu Cascavel": 397,"Mottu Foz do Iguaçu": 511,"Mottu Lages": 527,"Mottu Passo Fundo": 522,
+
 }
 
 regionais = {
@@ -67,7 +70,7 @@ regionais = {
     "Flávio": [82, 24, 35, 94, 83, 36, 23, 41, 477, 37, 13, 86, 7, 33, 34, 44],
     "Francisco": [61, 5, 59, 30, 4, 29, 28, 26, 27, 6, 21, 114, 9, 84, 16, 122, 18, 17],
     "Júlio": [22, 52, 57, 67, 78, 116, 60, 65, 32, 111, 56, 10, 46, 45, 309, 53, 58, 123, 105, 183, 173, 180, 20, 75],
-    "Leonardo": [55, 474, 259, 285, 300, 77, 511, 416, 522, 526, 537, 527, 509, 455, 505,357, 463, 397, 174, 203, 417, 356, 372, 473, 319, 489, 462, 507, 476, 469, 478, 497, 396, 366, 513, 458, 267, 514, 449, 454, 475, 472, 515, 533, 536],
+    "Leonardo": [55, 474, 259, 285, 300, 77, 511, 416, 522, 526, 537, 527, 509, 455, 505,357, 463, 397, 174, 203, 417, 356, 372, 473, 319, 489, 462, 507, 476, 469, 478, 497, 396, 366, 513, 458, 267, 514, 449, 454, 475, 472, 515, 533, 536, 523, 542, 546, 544],
     "Lucas": [42, 48, 107, 249, 113, 47, 43, 106, 71, 499, 459, 87, 413, 85, 11],
     "Rogério": [69, 70, 73, 74, 76, 110, 115, 271, 274, 258, 329, 51, 95, 284, 252, 238,80, 109, 49, 50, 310, 295, 405, 384, 225, 248, 266, 283, 402, 250, 365,404, 282, 64, 175, 311]
 }
@@ -212,4 +215,5 @@ st.dataframe(
 
 
 st.caption("Para atualizar automaticamente, recarregue a página após o intervalo definido.")
+
 
