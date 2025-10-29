@@ -76,6 +76,7 @@ regionais = {
 }
 id_para_nome = {v: k for k, v in filiais.items()}
 
+
 # ==============================
 # TOKEN
 # ==============================
@@ -122,35 +123,35 @@ def get_vendas(lugar_id, token):
 
     headers = {
         "Authorization": f"Bearer {token}",
-        "accept": "text/plain",               # ✅ igual ao Postman
-        "Content-Type": "application/json",   # ✅ igual ao Postman
-        "branch-id": str(lugar_id)            # ✅ header obrigatório
+        "accept": "text/plain",               # igual ao Postman
+        "Content-Type": "application/json",   # igual ao Postman
+        "branch-id": str(lugar_id)            # header obrigatório
     }
 
     try:
         r = requests.post(url, headers=headers, json=payload, timeout=30)
         r.raise_for_status()
+
+        # força lista vazia se vier None
         data = r.json().get("result", {}) or r.json().get("dataResult", {})
-        services = data.get("services") or []   # ✅ força lista vazia se vier None
+        services = data.get("services") or []
 
         # filtra os que não são 76 ou 85
         validos = [s for s in services if s.get("serviceTypeCode") not in (76, 85)]
         qtd_vendas = len(validos)
 
         return {
-        "lugarId": lugar_id,
-        "lugarNome": id_para_nome.get(lugar_id, f"ID {lugar_id}"),
-        "vendasHoje": qtd_vendas,
-        "erro": None
+            "lugarId": lugar_id,
+            "lugarNome": id_para_nome.get(lugar_id, f"ID {lugar_id}"),
+            "vendasHoje": qtd_vendas,
+            "erro": None
         }
-        
+
     except Exception as e:
-        st.error(f"❌ Erro filial {lugar_id}: {e}")
-        if 'r' in locals():
-            st.write("📥 Response completa:", r.text)
+        # tratamento silencioso, sem prints no Streamlit
         return {
             "lugarId": lugar_id,
-            "lugarNome": "Erro",
+            "lugarNome": id_para_nome.get(lugar_id, f"ID {lugar_id}"),
             "vendasHoje": 0,
             "erro": str(e)
         }
@@ -201,7 +202,6 @@ st.subheader(f"📍 Regional {regional_sel} — Atualizado às {hora_brasil}")
 col1, col2 = st.columns(2)
 col1.metric("Total de Vendas (hoje)", int(df["vendasHoje"].sum()))
 
-
 st.dataframe(
     df[["lugarNome", "vendasHoje"]]
     .rename(columns={
@@ -211,7 +211,6 @@ st.dataframe(
     use_container_width=True,
     height=500,
 )
-
 
 st.caption("Para atualizar automaticamente, recarregue a página após o intervalo definido.")
 
