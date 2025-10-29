@@ -9,7 +9,7 @@ import time
 # ==============================
 # CONFIGURAÇÕES
 # ==============================
-st.set_page_config(page_title="Dashboard de Retiradas", page_icon="🟢 ", layout="wide")
+st.set_page_config(page_title="Dashboard de Retiradas", page_icon="🟢", layout="wide")
 st.title("🟢🏍️  Acompanhamento de Vendas — Mottu")
 
 filiais = {
@@ -212,3 +212,4 @@ st.dataframe(
 
 
 st.caption("Para atualizar automaticamente, recarregue a página após o intervalo definido.")
+
