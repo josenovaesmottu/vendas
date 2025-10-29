@@ -130,21 +130,20 @@ def get_vendas(lugar_id, token):
     try:
         r = requests.post(url, headers=headers, json=payload, timeout=30)
         r.raise_for_status()
-
         data = r.json().get("result", {}) or r.json().get("dataResult", {})
-        services = data.get("services", [])
+        services = data.get("services") or []   # ✅ força lista vazia se vier None
 
         # filtra os que não são 76 ou 85
         validos = [s for s in services if s.get("serviceTypeCode") not in (76, 85)]
         qtd_vendas = len(validos)
 
         return {
-            "lugarId": lugar_id,
-            "lugarNome": id_para_nome.get(lugar_id, f"ID {lugar_id}"),
-            "vendasHoje": qtd_vendas,
-            "erro": None
+        "lugarId": lugar_id,
+        "lugarNome": id_para_nome.get(lugar_id, f"ID {lugar_id}"),
+        "vendasHoje": qtd_vendas,
+        "erro": None
         }
-
+        
     except Exception as e:
         st.error(f"❌ Erro filial {lugar_id}: {e}")
         if 'r' in locals():
@@ -215,5 +214,6 @@ st.dataframe(
 
 
 st.caption("Para atualizar automaticamente, recarregue a página após o intervalo definido.")
+
 
 
