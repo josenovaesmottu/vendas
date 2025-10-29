@@ -14,7 +14,7 @@ st.set_option('client.showErrorDetails', False)
 # CONFIGURAÇÕES
 # ==============================
 st.set_page_config(page_title="Dashboard de Retiradas", page_icon="🟢", layout="wide")
-st.title("🟢🏍️  Acompanhamento de Retiradas — Mottu")
+st.title("🟢 Acompanhamento de Retiradas — Mottu")
 
 filiais = {
     "Mottu Abaetetuba": 282, "Mottu Alagoinhas": 110, "Mottu Ananindeua": 122, "Mottu Anápolis": 58,
@@ -207,6 +207,7 @@ st.dataframe(
 )
 
 st.caption("Para atualizar automaticamente, recarregue a página após o intervalo definido.")
+
 
 
 
