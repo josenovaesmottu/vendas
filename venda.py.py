@@ -123,21 +123,22 @@ def get_vendas(lugar_id, token):
 
     headers = {
         "Authorization": f"Bearer {token}",
-        "accept": "text/plain",               # igual ao Postman
-        "Content-Type": "application/json",   # igual ao Postman
-        "branch-id": str(lugar_id)            # header obrigatório
+        "accept": "text/plain",
+        "Content-Type": "application/json",
+        "branch-id": str(lugar_id)
     }
 
     try:
         r = requests.post(url, headers=headers, json=payload, timeout=30)
         r.raise_for_status()
 
-        # força lista vazia se vier None
-        data = r.json().get("result", {}) or r.json().get("dataResult", {})
+        # protege todos os níveis contra None
+        json_data = r.json() or {}
+        data = json_data.get("result") or json_data.get("dataResult") or {}
         services = data.get("services") or []
 
         # filtra os que não são 76 ou 85
-        validos = [s for s in services if s.get("serviceTypeCode") not in (76, 85)]
+        validos = [s for s in services if isinstance(s, dict) and s.get("serviceTypeCode") not in (76, 85)]
         qtd_vendas = len(validos)
 
         return {
@@ -147,15 +148,14 @@ def get_vendas(lugar_id, token):
             "erro": None
         }
 
-    except Exception as e:
-        # tratamento silencioso, sem prints no Streamlit
+    except Exception:
+        # silencioso (sem logs nem prints)
         return {
             "lugarId": lugar_id,
             "lugarNome": id_para_nome.get(lugar_id, f"ID {lugar_id}"),
             "vendasHoje": 0,
-            "erro": str(e)
+            "erro": "erro silencioso"
         }
-
 
 # ==============================
 # INTERFACE
@@ -213,6 +213,7 @@ st.dataframe(
 )
 
 st.caption("Para atualizar automaticamente, recarregue a página após o intervalo definido.")
+
 
 
 
