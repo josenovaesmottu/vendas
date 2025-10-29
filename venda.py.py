@@ -4,7 +4,11 @@ import pandas as pd
 from datetime import datetime
 from zoneinfo import ZoneInfo
 import time
+import warnings
 
+# Silencia warnings e esconde detalhes de erros no Streamlit
+warnings.filterwarnings("ignore")
+st.set_option('client.showErrorDetails', False)
 
 # ==============================
 # CONFIGURAÇÕES
@@ -52,30 +56,27 @@ filiais = {
     "Mottu Teixeira de Freitas": 284, "Mottu Teresina": 26, "Mottu Toledo": 463, "Mottu Uberaba": 78,
     "Mottu Uberlândia": 25, "Mottu Valparaíso": 310, "Mottu Vila Isabel": 225, "Mottu Vila Velha": 72,
     "Mottu Vitória": 405, "Mottu Vitória da Conquista": 80, "Mottu Vitória de Santo Antão": 250,
-    "Mottu Volta Redonda": 396, "Mottu Várzea Grande": 473,     "Mottu Foz do Iguaçu": 511,  "Mottu Passo Fundo": 522, "Mottu Sinop": 526,
+    "Mottu Volta Redonda": 396, "Mottu Várzea Grande": 473, "Mottu Foz do Iguaçu": 511, "Mottu Passo Fundo": 522, "Mottu Sinop": 526,
     "Mottu Itumbiara": 537, "Mottu Lages": 527, "Mottu Patos de Minas": 509,
     "Mottu Cachoeiro de Itapemirim": 505, "Mottu Cariacica": 489, "Mottu Nossa Senhora do Socorro": 507,
-    "Mottu Anápolis": 58,"Mottu MX Edomex Coacalco": 499,
+    "Mottu Anápolis": 58, "Mottu MX Edomex Coacalco": 499,
     "Mottu México CDMX Iztapalapa": 87, "Mottu Campo Grande - RJ": 497,
     "Mottu São José do Ribamar": 513, "Mottu São Mateus": 514, "Mottu Ourinhos": 475, "Mottu Nova Iguaçu": 478, "Mottu Madureira": 476,
     "Mottu Poços de Caldas": 515, "Mottu Americana": 533,
-    "Mottu Marília": 536 , "Mottu Botucatu": 523, "Mottu Votuporanga": 542, "Mottu Varginha": 546, "Mottu Chapecó": 544,"Mottu Itumbiara": 537,"Mottu Ipojuca": 267,"Mottu Caxias": 366,
-    "Mottu Barreiras": 259,"Mottu Ji Paraná": 416,"Mottu Americana": 533,"Mottu Marília": 536,"Mottu Itapetininga": 449,"Mottu São Mateus": 514,"Mottu Poços de Caldas": 515,"Mottu Sete Lagoas": 372,
-    "Mottu Volta Redonda": 396,"Mottu Campos dos Goytacazes": 285,"Mottu Ponta Grossa": 319,"Mottu Cascavel": 397,"Mottu Foz do Iguaçu": 511,"Mottu Lages": 527,"Mottu Passo Fundo": 522,
-
+    "Mottu Marília": 536, "Mottu Botucatu": 523, "Mottu Votuporanga": 542, "Mottu Varginha": 546, "Mottu Chapecó": 544,
+    "Mottu Caxias": 366, "Mottu Ji Paraná": 416, "Mottu Itapetininga": 449,
+    "Mottu Campos dos Goytacazes": 285, "Mottu Ponta Grossa": 319, "Mottu Cascavel": 397
 }
-
 regionais = {
     "Bruno": [31, 62, 66, 25, 68, 63, 81, 79, 38, 8, 3, 72, 19, 15, 118, 40, 39],
     "Flávio": [82, 24, 35, 94, 83, 36, 23, 41, 477, 37, 13, 86, 7, 33, 34, 44],
     "Francisco": [61, 5, 59, 30, 4, 29, 28, 26, 27, 6, 21, 114, 9, 84, 16, 122, 18, 17],
     "Júlio": [22, 52, 57, 67, 78, 116, 60, 65, 32, 111, 56, 10, 46, 45, 309, 53, 58, 123, 105, 183, 173, 180, 20, 75],
-    "Leonardo": [55, 474, 259, 285, 300, 77, 511, 416, 522, 526, 537, 527, 509, 455, 505,357, 463, 397, 174, 203, 417, 356, 372, 473, 319, 489, 462, 507, 476, 469, 478, 497, 396, 366, 513, 458, 267, 514, 449, 454, 475, 472, 515, 533, 536, 523, 542, 546, 544],
+    "Leonardo": [55, 474, 259, 285, 300, 77, 511, 416, 522, 526, 537, 527, 509, 455, 505, 357, 463, 397, 174, 203, 417, 356, 372, 473, 319, 489, 462, 507, 476, 469, 478, 497, 396, 366, 513, 458, 267, 514, 449, 454, 475, 472, 515, 533, 536, 523, 542, 546, 544],
     "Lucas": [42, 48, 107, 249, 113, 47, 43, 106, 71, 499, 459, 87, 413, 85, 11],
-    "Rogério": [69, 70, 73, 74, 76, 110, 115, 271, 274, 258, 329, 51, 95, 284, 252, 238,80, 109, 49, 50, 310, 295, 405, 384, 225, 248, 266, 283, 402, 250, 365,404, 282, 64, 175, 311]
+    "Rogério": [69, 70, 73, 74, 76, 110, 115, 271, 274, 258, 329, 51, 95, 284, 252, 238, 80, 109, 49, 50, 310, 295, 405, 384, 225, 248, 266, 283, 402, 250, 365, 404, 282, 64, 175, 311]
 }
 id_para_nome = {v: k for k, v in filiais.items()}
-
 
 # ==============================
 # TOKEN
@@ -93,13 +94,14 @@ def retorna_token():
     }
     headers = {"Content-Type": "application/x-www-form-urlencoded"}
 
-    r = requests.post(url, data=payload, headers=headers, timeout=20)
-    if r.status_code == 200:
-        return r.json().get("access_token")
-
-    st.error(f"Erro ao gerar token ({r.status_code}): {r.text}")
+    try:
+        r = requests.post(url, data=payload, headers=headers, timeout=20)
+        if r.status_code == 200:
+            return r.json().get("access_token")
+    except Exception:
+        pass
+    # silencioso: sem mensagens na interface
     return None
-
 
 # ==============================
 # GET VENDAS
@@ -132,12 +134,10 @@ def get_vendas(lugar_id, token):
         r = requests.post(url, headers=headers, json=payload, timeout=30)
         r.raise_for_status()
 
-        # protege todos os níveis contra None
         json_data = r.json() or {}
         data = json_data.get("result") or json_data.get("dataResult") or {}
         services = data.get("services") or []
 
-        # filtra os que não são 76 ou 85
         validos = [s for s in services if isinstance(s, dict) and s.get("serviceTypeCode") not in (76, 85)]
         qtd_vendas = len(validos)
 
@@ -147,9 +147,8 @@ def get_vendas(lugar_id, token):
             "vendasHoje": qtd_vendas,
             "erro": None
         }
-
     except Exception:
-        # silencioso (sem logs nem prints)
+        # silencioso (sem logs)
         return {
             "lugarId": lugar_id,
             "lugarNome": id_para_nome.get(lugar_id, f"ID {lugar_id}"),
@@ -176,7 +175,6 @@ if not token:
 
 lugar_ids = regionais.get(regional_sel, [])
 if not lugar_ids:
-    st.warning("Nenhuma filial cadastrada nessa regional.")
     st.stop()
 
 resultados = []
@@ -191,7 +189,6 @@ df = pd.DataFrame(resultados)
 df = df.sort_values(by="vendasHoje", ascending=False)
 df = df.set_index("lugarId")
 
-# Horário local Brasil
 hora_brasil = datetime.now(ZoneInfo("America/Sao_Paulo")).strftime("%H:%M:%S")
 
 # ==============================
@@ -204,19 +201,11 @@ col1.metric("Total de Vendas (hoje)", int(df["vendasHoje"].sum()))
 
 st.dataframe(
     df[["lugarNome", "vendasHoje"]]
-    .rename(columns={
-        "lugarNome": "Filial",
-        "vendasHoje": "Vendas (Hoje)"
-    }),
+      .rename(columns={"lugarNome": "Filial", "vendasHoje": "Vendas (Hoje)"}),
     use_container_width=True,
     height=500,
 )
 
 st.caption("Para atualizar automaticamente, recarregue a página após o intervalo definido.")
-
-
-
-
-
 
 
