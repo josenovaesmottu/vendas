@@ -6,6 +6,7 @@ from zoneinfo import ZoneInfo
 import time
 import warnings
 
+
 # Silencia warnings e esconde detalhes de erros no Streamlit
 warnings.filterwarnings("ignore")
 st.set_option('client.showErrorDetails', False)
@@ -244,6 +245,7 @@ df_estilizado = (
 st.dataframe(df_estilizado, use_container_width=True, height=500)
 
 st.caption("Para atualizar automaticamente, recarregue a página após o intervalo definido.")
+
 
 
 
