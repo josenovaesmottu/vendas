@@ -197,7 +197,8 @@ intervalo = st.number_input("Atualizar automaticamente (minutos):", min_value=1,
 st.caption("O dashboard atualiza automaticamente a cada intervalo definido ou manualmente.")
 
 if st.button("🔄 Atualizar agora"):
-    st.experimental_rerun()
+    st.rerun()
+
 
 # ==============================
 # EXECUÇÃO
@@ -245,6 +246,7 @@ df_estilizado = (
 st.dataframe(df_estilizado, use_container_width=True, height=800)
 
 st.caption("Para atualizar automaticamente, recarregue a página após o intervalo definido.")
+
 
 
 
