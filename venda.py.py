@@ -43,7 +43,7 @@ filiais = {
     "Mottu Mexico Guadalajara": 47, "Mottu Mexico Guadalajara Centro": 113, "Mottu Mexico Los Reyes": 413,
     "Mottu Mexico Monterrey": 43, "Mottu Mexico Monterrey La Fe": 106, "Mottu Mexico Mérida": 249,
     "Mottu Mexico Puebla": 48, "Mottu Mexico Querétaro": 42, "Mottu Mexico Toluca": 459,
-    "Mottu Mogi das Cruzes": 86, "Mottu Montes Claros": 57, "Mottu Mossoró": 67, "Mottu Natal": 27,
+    "Mottu Mogi das Cruzes": 86, "Mottu Montes Claros": 57, "Mottu Mossoró": 67, "Mottu Natal": 27, "Mottu São Mateus": 514,
     "Mottu Niterói": 105, "Mottu Olinda": 84, "Mottu Palmas": 60, "Mottu Parauapebas": 79,
     "Mottu Parnamirim": 118, "Mottu Parnaíba": 115, "Mottu Patos": 300, "Mottu Pelotas": 203,
     "Mottu Petrolina": 309, "Mottu Pindamonhangaba": 311, "Mottu Piracicaba": 44, "Mottu Piçarreira": 183,
@@ -75,7 +75,7 @@ regionais = {
     ],
     "Júlio": [
         82, 24, 23, 35, 94, 44, 34, 13, 1, 83, 86, 41,
-        36, 37, 477, 33, 7
+        36, 37, 477, 33, 7, 514
     ],
     "Francisco": [
         29, 28, 26, 27, 6, 21, 114, 9, 84, 16, 59, 61,
@@ -246,6 +246,7 @@ df_estilizado = (
 st.dataframe(df_estilizado, use_container_width=True, height=800)
 
 st.caption("Para atualizar automaticamente, recarregue a página após o intervalo definido.")
+
 
 
 
