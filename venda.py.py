@@ -95,8 +95,8 @@ regionais = {
         475, 472
     ],
     "Lucas": [
-        249, 42, 107, 113, 47, 48, 43, 106, 71, 499, 413, 85,
-        87, 11, 459, 771
+        249, 42, 107, 113, 48, 43, 106, 71, 499, 413, 85,
+         11, 459, 771
     ],
     "Maurício": [
         547
@@ -246,6 +246,7 @@ df_estilizado = (
 st.dataframe(df_estilizado, use_container_width=True, height=800)
 
 st.caption("Para atualizar automaticamente, recarregue a página após o intervalo definido.")
+
 
 
 
