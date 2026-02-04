@@ -40,7 +40,7 @@ filiais = {
     "Mottu Maceió": 22, "Mottu Manaus": 5, "Mottu Marabá": 68, "Mottu Maracanaú": 180,
     "Mottu Maringá": 50, "Mottu Messejana": 402, "Mottu Mexico CDMX Cien Metros": 85,
     "Mottu Mexico CDMX Colegio Militar": 11, "Mottu Mexico CDMX Tlalpan": 71, "Mottu Mexico Cancún": 107,
-    "Mottu Mexico Guadalajara": 47, "Mottu Mexico Guadalajara Centro": 113, "Mottu Mexico Los Reyes": 413,
+     "Mottu Mexico Guadalajara Centro": 113, "Mottu Mexico Los Reyes": 413,
     "Mottu Mexico Monterrey": 43, "Mottu Mexico Monterrey La Fe": 106, "Mottu Mexico Mérida": 249,
     "Mottu Mexico Puebla": 48, "Mottu Mexico Querétaro": 42, "Mottu Mexico Toluca": 459,
     "Mottu Mogi das Cruzes": 86, "Mottu Montes Claros": 57, "Mottu Mossoró": 67, "Mottu Natal": 27, "Mottu São Mateus": 514,
@@ -61,11 +61,11 @@ filiais = {
     "Mottu Itumbiara": 537, "Mottu Lages": 527, "Mottu Patos de Minas": 509,
     "Mottu Cachoeiro de Itapemirim": 505, "Mottu Cariacica": 489, "Mottu Nossa Senhora do Socorro": 507,
     "Mottu Anápolis": 58, "Mottu MX Edomex Coacalco": 499,
-    "Mottu México CDMX Iztapalapa": 87, "Mottu Campo Grande - RJ": 497,
+       "Mottu Campo Grande - RJ": 497,
     "Mottu São José do Ribamar": 513, "Mottu São Mateus": 514, "Mottu Ourinhos": 475, "Mottu Nova Iguaçu": 478, "Mottu Madureira": 476,
     "Mottu Poços de Caldas": 515, "Mottu Americana": 533,
     "Mottu Marília": 536, "Mottu Botucatu": 523, "Mottu Votuporanga": 542, "Mottu Varginha": 546, "Mottu Chapecó": 544,
-    "Mottu Caxias": 366, "Mottu Ji Paraná": 416, "Mottu Itapetininga": 449,
+    "Mottu Caxias": 366, "Mottu Ji Paraná": 416, "Mottu Itapetininga": 449, "Mottu Edomex Atizapan": 771,
     "Mottu Campos dos Goytacazes": 285, "Mottu Ponta Grossa": 319, "Mottu Cascavel": 397
 }
 regionais = {
@@ -96,7 +96,7 @@ regionais = {
     ],
     "Lucas": [
         249, 42, 107, 113, 47, 48, 43, 106, 71, 499, 413, 85,
-        87, 11, 459
+        87, 11, 459, 771
     ],
     "Maurício": [
         547
@@ -246,6 +246,7 @@ df_estilizado = (
 st.dataframe(df_estilizado, use_container_width=True, height=800)
 
 st.caption("Para atualizar automaticamente, recarregue a página após o intervalo definido.")
+
 
 
 
